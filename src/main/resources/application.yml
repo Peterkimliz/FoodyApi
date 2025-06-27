@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+spring:
+  secret_key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  application:
+    name: foody
+  datasource:
+    url: jdbc:postgresql://localhost:5432/foody
+    username: postgres
+    password: kimani89
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl_auto: update
+    database: postgresql
+    show_sql: true
