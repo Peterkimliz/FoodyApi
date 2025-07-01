@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Service
@@ -22,11 +23,10 @@ public class UserDetailsImplementation implements UserDetailsService {
         if (userModel.isEmpty()) {
             throw new UsernameNotFoundException("User not found");
         }
-
         return new User(
                 userModel.get().getUsername(),
                 userModel.get().getPassword(),
-                userModel.get().getAuthorities()
+                new ArrayList<>()
         );
     }
 }

@@ -13,7 +13,6 @@ import com.foody.foody.Services.interfaces.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -62,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
         UserModel userModel = new UserModel();
         userModel.setEmail(signUpRequest.getEmail());
         userModel.setFullName(signUpRequest.getFullName());
-        userModel.setPassword(passwordEncoder.encode(signUpRequest.getEmail()));
+        userModel.setPassword(passwordEncoder.encode(signUpRequest.getPassword()));
         userModel.setCreatedAt(LocalDateTime.now());
         userRepository.save(userModel);
         return constructUser(userModel);

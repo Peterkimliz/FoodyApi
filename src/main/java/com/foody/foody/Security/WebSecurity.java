@@ -15,7 +15,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.HandlerExceptionResolver;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -35,6 +40,7 @@ public class WebSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 
         return httpSecurity
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         request ->
@@ -59,7 +65,7 @@ public class WebSecurity {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 )
-                .authenticationProvider(daoAuthenticationProvider())
+                .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
 
@@ -70,9 +76,19 @@ public class WebSecurity {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
     @Bean
-    public AuthenticationProvider daoAuthenticationProvider() {
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("*"));
+        configuration.setAllowedMethods(List.of("*"));
+        configuration.setAllowedHeaders(List.of("*"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+    @Bean
+    public AuthenticationProvider authenticationProvider() {
+
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setUserDetailsService(userDetailsImplementation);
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
