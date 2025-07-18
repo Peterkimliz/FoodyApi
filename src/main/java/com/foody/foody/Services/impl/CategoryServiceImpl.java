@@ -21,8 +21,6 @@ import java.util.Optional;
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
-    @Value("${file.upload-dir}")
-    String uploadDir;
     @Value("${server.host}")
     String host;
 

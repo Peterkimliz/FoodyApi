@@ -1,8 +1,10 @@
 package com.foody.foody.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class RestaurantModel {
@@ -10,21 +12,25 @@ public class RestaurantModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private  double latitude;
+    private double latitude;
     private double longitude;
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
     private Category category;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private  UserModel user;
+    private UserModel user;
     private String address;
     private String imageUrl;
     private LocalDateTime createdAt;
-    private  double distance;
+    private double distance;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL)
+    List<FoodItem> foodItems;
 
-    public RestaurantModel(Long id, String name, double latitude, double longitude, Category category, UserModel user,
-                           String address, String imageUrl, LocalDateTime createdAt, double distance) {
+    public RestaurantModel(Long id, String name, double latitude, double longitude,
+                           Category category, UserModel user, String address, String imageUrl,
+                           LocalDateTime createdAt, double distance, List<FoodItem> foodItems) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -35,11 +41,11 @@ public class RestaurantModel {
         this.imageUrl = imageUrl;
         this.createdAt = createdAt;
         this.distance = distance;
+        this.foodItems = foodItems;
     }
 
     public RestaurantModel() {
     }
-
 
     public Long getId() {
         return id;
@@ -119,5 +125,13 @@ public class RestaurantModel {
 
     public void setDistance(double distance) {
         this.distance = distance;
+    }
+
+    public List<FoodItem> getFoodItems() {
+        return foodItems;
+    }
+
+    public void setFoodItems(List<FoodItem> foodItems) {
+        this.foodItems = foodItems;
     }
 }

@@ -1,6 +1,7 @@
 package com.foody.foody.Dtos;
 
 
+import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -19,7 +20,9 @@ public class AddressRequest {
     @NotBlank(message = "country  is required")
     private String country;
     @NotNull(message = "latitude is required")
+    @DecimalMin(value = "0.1", inclusive = true, message = "Value must be at least 0.1")
     private double latitude;
+    @DecimalMin(value = "0.1", inclusive = true, message = "Value must be at least 0.1")
     @NotNull(message = "longitude is required")
     private double longitude;
 

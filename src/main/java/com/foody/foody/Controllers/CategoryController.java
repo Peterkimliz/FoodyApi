@@ -29,9 +29,9 @@ public class CategoryController {
         return  new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
     }
 
-
     @PostMapping(value = "/create",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<ApiResponse<CategoryResponse>>createCategory(@ModelAttribute @Validated  CategoryRequest categoryRequest){
+    public ResponseEntity<ApiResponse<CategoryResponse>>createCategory(
+            @ModelAttribute @Validated  CategoryRequest categoryRequest){
         System.out.println("Called");
         return new ResponseEntity<>(categoryService.createCategory(categoryRequest), HttpStatus.CREATED);
     }
