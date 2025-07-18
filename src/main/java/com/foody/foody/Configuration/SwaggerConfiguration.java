@@ -32,7 +32,8 @@ import org.springframework.stereotype.Component;
                 description = "Local ENV",
 //            url = "http://localhost:8082"
 //                url = "http://192.168.246.132:8082"
-                url = "http://10.216.242.132:8082"
+//                url = "http://10.216.242.132:8082"
+                url = "http://10.0.200.7:8082"
         )
 
 }, security = {

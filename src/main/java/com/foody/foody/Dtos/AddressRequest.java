@@ -1,34 +1,36 @@
-package com.foody.foody.Models;
+package com.foody.foody.Dtos;
 
 
-import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-@Entity
-public class Address {
+public class AddressRequest {
+    @NotNull(message = "userId is required ")
+    private Long userId;
+    @NotBlank(message = "addressLine1 is required")
+    private String addressLine1;
+    private String addressLine2;
+    @NotBlank(message = "city is required")
+    private String city;
+    @NotBlank(message = "state is required")
+    private String state;
+    @NotBlank(message = "zipCode is required ")
+    private String zipCode;
+    @NotBlank(message = "country  is required")
+    private String country;
+    @NotNull(message = "latitude is required")
+    private double latitude;
+    @NotNull(message = "longitude is required")
+    private double longitude;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
 
-    @ManyToOne
-    @JoinColumn(
-            name = "user_id"
-    )
-    private  UserModel user;
-    private  String addressLine1;
-    private  String addressLine2;
-    private  String city;
-    private  String state;
-    private  String zipCode;
-    private  String country;
-    private  double latitude;
-    private  double longitude;
+    public AddressRequest() {
+    }
 
-    public Address(Long id, UserModel userId, String addressLine1,
-                   String addressLine2, String city, String state,
-                   String zipCode, String country, double latitude, double longitude) {
-        this.id = id;
-        this.user = userId;
+    public AddressRequest(String addressLine1, String addressLine2, String city,
+                          String state, String zipCode,
+                          String country, double latitude,
+                          double longitude, Long userId) {
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.city = city;
@@ -37,25 +39,16 @@ public class Address {
         this.country = country;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.userId = userId;
     }
 
-    public Address() {
+
+    public Long getUserId() {
+        return userId;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public UserModel getUser() {
-        return user;
-    }
-
-    public void setUser(UserModel user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getAddressLine1() {

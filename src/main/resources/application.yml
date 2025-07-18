@@ -5,9 +5,10 @@ file:
 
 server:
 #  host: http://10.216.242.132:8082/api/v1
+  host: http://10.0.200.7:8082/api/v1
   port: 8082
 #  address: 10.216.242.132
-#  address: 10.0.200.7
+  address: 10.0.200.7
 
 spring:
   servlet:
@@ -22,13 +23,13 @@ spring:
     name: foody
 
   datasource:
-#    url: jdbc:postgresql://localhost:5432/foody
+    url: jdbc:postgresql://localhost:5432/foody
+    username: postgres
+    password: kimani89
+#    url: jdbc:postgresql://db.ufabksckowuvjzxxeqdr.supabase.co:5432/postgres?sslmode=require
 #    username: postgres
-#    password: kimani89
-     url: jdbc:postgresql://db.ufabksckowuvjzxxeqdr.supabase.co:5432/postgres?sslmode=require
-     username: postgres
-     password: $$@36878489Pk
-     driver-class-name: org.postgresql.Driver
+#    password: $$@36878489Pk
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
