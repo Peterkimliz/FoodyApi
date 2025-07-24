@@ -27,7 +27,7 @@ spring:
 #    password: kimani89
     url: jdbc:postgresql://db.ufabksckowuvjzxxeqdr.supabase.co:5432/postgres?sslmode=require
     username: postgres
-    password:
+    password: $$@36878489Pk
     driver-class-name: org.postgresql.Driver
 
   jpa:
