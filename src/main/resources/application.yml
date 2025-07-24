@@ -2,12 +2,11 @@ file:
   upload-dir: uploads/images
 
 server:
-  host:
 #  host: http://10.248.67.132:8082/api/v1
-#  host: http://192.168.1.13:8082/api/v1
+  host: http://192.168.1.13:8082/api/v1
   port: 8082
 #  address: 10.248.67.132
-#  address: 192.168.1.13
+  address: 192.168.1.13
 
 spring:
   servlet:
@@ -22,12 +21,12 @@ spring:
     name: foody
 
   datasource:
-#    url: jdbc:postgresql://localhost:5432/foody
-#    username: postgres
-#    password: kimani89
-    url: jdbc:postgresql://db.ufabksckowuvjzxxeqdr.supabase.co:5432/postgres
+    url: jdbc:postgresql://localhost:5432/foody
     username: postgres
-    password: $$@36878489Pk
+    password: kimani89
+#    url: jdbc:postgresql://db.ufabksckowuvjzxxeqdr.supabase.co:5432/postgres?sslmode=require
+#    username: postgres
+#    password:
     driver-class-name: org.postgresql.Driver
 
   jpa:
