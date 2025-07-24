@@ -1,23 +1,24 @@
 package com.foody.foody.Dtos;
 
 import com.foody.foody.Models.Category;
-import com.foody.foody.Models.UserModel;
+
 import java.time.LocalDateTime;
 
 public class RestaurantResponse {
     private Long id;
     private String name;
-    private  double latitude;
+    private double latitude;
     private double longitude;
     private Category category;
-    private UserModel user;
+    private UserResponse user;
     private String address;
     private String imageUrl;
     private LocalDateTime createdAt;
-    private  double distance;
+    private double distance;
 
-    public RestaurantResponse(Long id, String name, double latitude, double longitude, Category category, UserModel user,
-                           String address, String imageUrl, LocalDateTime createdAt, double distance) {
+    public RestaurantResponse(Long id, String name, double latitude, double longitude, Category category,
+                              UserResponse user, String address, String imageUrl, LocalDateTime createdAt,
+                              double distance) {
         this.id = id;
         this.name = name;
         this.latitude = latitude;
@@ -74,11 +75,11 @@ public class RestaurantResponse {
         this.category = category;
     }
 
-    public UserModel getUser() {
+    public UserResponse getUser() {
         return user;
     }
 
-    public void setUser(UserModel user) {
+    public void setUser(UserResponse user) {
         this.user = user;
     }
 

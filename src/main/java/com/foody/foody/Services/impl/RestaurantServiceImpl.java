@@ -3,13 +3,16 @@ package com.foody.foody.Services.impl;
 import com.foody.foody.Dtos.ApiResponse;
 import com.foody.foody.Dtos.RestaurantRequest;
 import com.foody.foody.Dtos.RestaurantResponse;
+import com.foody.foody.Dtos.UserResponse;
 import com.foody.foody.Exceptions.FoundException;
 import com.foody.foody.Exceptions.NotFoundException;
 import com.foody.foody.Models.RestaurantModel;
+import com.foody.foody.Models.UserModel;
 import com.foody.foody.Repositories.RestaurantRepository;
 import com.foody.foody.Services.interfaces.CategoryService;
 import com.foody.foody.Services.interfaces.RestaurantService;
 import com.foody.foody.Services.interfaces.UserService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -62,16 +65,26 @@ public class RestaurantServiceImpl implements RestaurantService {
         RestaurantResponse restaurantResponse = new RestaurantResponse();
         restaurantResponse.setAddress(restaurantModel.getAddress());
         restaurantResponse.setCategory(restaurantModel.getCategory());
-        restaurantResponse.setUser(restaurantModel.getUser());
+        restaurantResponse.setUser(constructUserResponse(restaurantModel.getUser()));
         restaurantResponse.setId(restaurantModel.getId());
         restaurantResponse.setName(restaurantModel.getName());
         restaurantResponse.setLatitude(restaurantModel.getLatitude());
         restaurantResponse.setLongitude(restaurantModel.getLongitude());
         restaurantResponse.setDistance(restaurantModel.getDistance());
         restaurantResponse.setCreatedAt(restaurantModel.getCreatedAt());
-        restaurantResponse.setImageUrl(host+"/"+restaurantModel.getImageUrl());
+        restaurantResponse.setImageUrl(host + "/" + restaurantModel.getImageUrl());
 
         return restaurantResponse;
+    }
+
+    private UserResponse constructUserResponse(UserModel user) {
+        return new UserResponse(
+                user.getFullName(),
+                user.getEmail(),
+                user.getId(),
+                user.getCreatedAt()
+
+        );
     }
 
     @Override
