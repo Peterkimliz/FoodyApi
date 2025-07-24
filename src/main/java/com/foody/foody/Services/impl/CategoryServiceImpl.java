@@ -1,6 +1,4 @@
 package com.foody.foody.Services.impl;
-
-
 import com.foody.foody.Dtos.ApiResponse;
 import com.foody.foody.Dtos.CategoryRequest;
 import com.foody.foody.Dtos.CategoryResponse;
@@ -48,7 +46,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     private CategoryResponse constructCategoryResponse(Category category) {
-
         CategoryResponse categoryResponse = new CategoryResponse();
         categoryResponse.setCreatedAt(category.getCreatedAt());
         categoryResponse.setName(category.getName());

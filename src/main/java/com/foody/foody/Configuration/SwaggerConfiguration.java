@@ -31,9 +31,9 @@ import org.springframework.stereotype.Component;
         @Server(
                 description = "Local ENV",
 //            url = "http://localhost:8082"
-//                url = "http://192.168.246.132:8082"
-//                url = "http://10.216.242.132:8082"
-                url = "http://10.0.200.7:8082"
+                url = "http://192.168.1.13:8082"
+//                url = "http://10.248.67.132:8082"
+//                url = "http://10.0.200.7:8082"
         )
 
 }, security = {
